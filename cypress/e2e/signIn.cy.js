@@ -2,7 +2,7 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
   });
 
   it('should login with correct username and password', () => {
@@ -15,6 +15,12 @@ describe('Sign In page', () => {
     cy.login('user', 'user123');
 
     cy.checkVerifyMessage('Your username is invalid!');
+  });
+
+  it('should show validation error for incorrect password', () => {
+    cy.login('tomsmith', '123!');
+
+    cy.checkVerifyMessage('Your password is invalid!');
   });
 
   it('should log out successfully', () => {
